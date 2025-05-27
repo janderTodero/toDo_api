@@ -4,7 +4,7 @@ const User = require("../models/user.js");
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  if (!authHeader || !authHeader.starsWith("Bearer ")) {
+  if (!authHeader) {
     return res.status(401).json({ message: "Invalid Token" });
   }
 

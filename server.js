@@ -2,14 +2,14 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
-const authRotes = require("./src/rotes/authRotes.js");
-const taskRotes = require("./src/rotes/taskRotes.js");
+const authRoutes = require("./src/routes/authRoutes.js");
+const taskRoutes = require("./src/routes/taskRoutes.js");
 
 const app = express();
 app.use(express.json());
 
-app.use("/api/auth", authRotes);
-// app.use("/api/tasks", taskRotes);
+app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
