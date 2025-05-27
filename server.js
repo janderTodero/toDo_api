@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/auth", authRotes);
-ap.use("/api/tasks", taskRotes);
+// app.use("/api/tasks", taskRotes);
 
 mongoose
   .connect(process.env.MONGO_URI)
