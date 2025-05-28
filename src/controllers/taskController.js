@@ -2,7 +2,17 @@ const Task = require("../models/task");
 
 exports.getTasks = async (req, res) => {
   try {
-    const tasks = await Task.find({ user: req.user._id }).sort("-createdAt");
+    const { completed } = req.query;
+
+    const filter = { user: req.user._id };
+
+    if (completed === "true") {
+      filter.completed = true;
+    } else if (completed === "false") {
+      filter.completed = false;
+    }
+
+    const tasks = await Task.find(filter).sort("-createdAt");
     res.json(tasks);
   } catch (error) {
     res.status(500).json({ message: "Error getting tasks" });
